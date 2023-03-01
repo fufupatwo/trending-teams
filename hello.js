@@ -1,12 +1,13 @@
-
 import { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
 import { promises as fs } from 'fs';
 
-const clientId = 'n3ndma0ivr6j04zmvtu2bzmpqg546w';
-const accessToken = 'ze4rkhapqt38z45gvrj67tatcmuek5';
+
 const clientSecret = 'okkjahms1h3vjdodn1jew50dgvsn7a';
-const refreshToken = 'wn2wyi5w4yqebxrkc62ps176sljggbmuopj6namvsfrk1w7nt7';
+const refreshToken = 'ovrxt976xm2fbc28oe84e23cjnse9v5fq88b0su7mrddqst0dp';
+const clientId = 'n3ndma0ivr6j04zmvtu2bzmpqg546w';
+const accessToken = 'i97rnyx6471gamnuur3ebnhxvjk2vp';
+
 async function main() {
 
     const tokenData = JSON.parse(await fs.readFile('./tokens.125328655.json', 'UTF-8'));
@@ -18,7 +19,10 @@ async function main() {
         }
     );
 
-    authProvider.addUserForToken(tokenData, ['chat']);
+    await authProvider.addUserForToken({
+        accessToken,
+        refreshToken
+    }, ['chat']);
 
     const chatClient = new ChatClient({ authProvider, channels: ['fufupatwo'] });
     await chatClient.connect();
@@ -32,21 +36,10 @@ async function main() {
             chatClient.say(channel, `@${user} rolled a ${diceRoll}`)
         }
     });
-
-    chatClient.onSub((channel, user) => {
-        chatClient.say(channel, `Thanks to @${user} for subscribing to the channel!`);
-    });
-
-    chatClient.onResub((channel, user, subInfo) => {
-        chatClient.say(channel, `Thanks to @${user} for subscribing to the channel for a total of ${subInfo.months} months!`);
-    });
-
-    chatClient.onSubGift((channel, user, subInfo) => {
-        chatClient.say(channel, `Thanks to ${subInfo.gifter} for gifting a subscription to ${user}!`);
-    });
-
-    
-//auth token is correct, clientID is correct, accessToken correct.
 }
+
+
+
+
 
 main();
