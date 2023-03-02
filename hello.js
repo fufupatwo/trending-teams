@@ -27,6 +27,17 @@ async function main() {
     const chatClient = new ChatClient({ authProvider, channels: ['fufupatwo'] });
     await chatClient.connect();
 
+    //onAuthSucc will print connected in chat.
+    chatClient.onAuthenticationSuccess(() => {
+        chatClient.say('fufupatwo', 'Hello, I\'m now connected!');
+    })
+
+    chatClient.join("ze1ig");
+    chatClient.onAuthenticationSuccess(() => {
+        chatClient.say('fufupatwo', 'Hello, I\'m now connected!');
+    })
+
+   // chatClient.onMessage(('ze1ig')) FIX ME
 
     chatClient.onMessage((channel, user, text) => {
         if (text === '!ping') {
@@ -36,6 +47,12 @@ async function main() {
             chatClient.say(channel, `@${user} rolled a ${diceRoll}`)
         }
     });
+
+
+
+
+
+
 }
 
 
