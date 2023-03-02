@@ -36,7 +36,7 @@ async function main() {
     chatClient.onAuthenticationSuccess(() => {
         chatClient.say('fufupatwo', 'Hello, I\'m now connected!');
     })
-
+    //test
    // chatClient.onMessage(('ze1ig')) FIX ME
 
     chatClient.onMessage((channel, user, text) => {
