@@ -20,6 +20,7 @@ async function main() {
     );
     await authProvider.addUserForToken(tokenData, ['chat']);
 
+
     const chatClient = new ChatClient({authProvider, channels: ['fufupatwo', 'ze1ig']});
     await chatClient.connect();
 
