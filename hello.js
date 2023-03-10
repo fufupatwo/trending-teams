@@ -18,23 +18,19 @@ async function main() {
             onRefresh: async (userId, newTokenData) => await fs.writeFile(`./tokens.${userId}.json`, JSON.stringify(newTokenData, null, 4), 'UTF-8')
         }
     );
+    await authProvider.addUserForToken(tokenData, ['chat']);
 
-    await authProvider.addUserForToken({
-        accessToken,
-        refreshToken
-    }, ['chat']);
-
-    const chatClient = new ChatClient({ authProvider, channels: ['fufupatwo'] });
+    const chatClient = new ChatClient({authProvider, channels: ['fufupatwo', 'ze1ig']});
     await chatClient.connect();
 
-    //onAuthSucc will print connected in chat.
+    //onAuthSuccess will print connected in chat.
     chatClient.onAuthenticationSuccess(() => {
         chatClient.say('fufupatwo', 'Hello, I\'m now connected!');
-    })
+    });
 
-    chatClient.join("ze1ig");
+
     chatClient.onAuthenticationSuccess(() => {
-        chatClient.say('fufupatwo', 'Hello, I\'m now connected!');
+        chatClient.say('ze1ig', 'Hello, I\'m now connected!');
     })
 
 
@@ -47,17 +43,11 @@ async function main() {
         }
     });
 
-   /* chatClient.onMessage((channel, user, text) => {
+    /*chatClient.onMessage((channel, user, text) => {
         if (text === 'penis') {
             chatClient.say(channel, 'big!');
         }
     });*/
-
-
-
-
-
-
 }
 
 
