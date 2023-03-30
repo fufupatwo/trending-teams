@@ -66,7 +66,7 @@ async function main() {
     await authProvider.addUserForToken(tokenData, ['chat']);
 
 
-    const chatClient = new ChatClient({authProvider, channels: ['fufupatwo', 'ze1ig']});
+    const chatClient = new ChatClient({authProvider, channels: ['fufupatwo', 'xqc']});
     await chatClient.connect();
 
     //onAuthSuccess will print connected in chat.
@@ -76,7 +76,7 @@ async function main() {
 
 
     chatClient.onAuthenticationSuccess(() => {
-        chatClient.say('ze1ig', 'Hi');
+        chatClient.say('xqc', 'Hi');
     })
 
 
@@ -100,10 +100,11 @@ async function main() {
         pool.query(sql, [channel,user,text], (err, result) => {
             if (err) {
                 console.error(err.message);
-            } else if (result.rows.length === 0) {
+            } else if (result.rowCount === 0) {
                 console.log('Data was not found in the database');
             } else {
                 console.log('Data was found in the database:');
+               // console.log(result);
                 console.log(`ID: ${result.rows[0].id}, Channel: ${result.rows[0].channel}, Username: ${result.rows[0].username}, Message: ${result.rows[0].message}`);
             }
         });
