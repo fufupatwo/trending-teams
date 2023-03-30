@@ -1,0 +1,6 @@
+.package-lock.json
+.env
+.tokens*
+./node_modules/
+./idea/
+
