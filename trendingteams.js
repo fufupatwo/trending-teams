@@ -109,7 +109,7 @@ async function main() {
         });
 
 
-       /* db.get(selectSql, [channel, user, text], (err, row) => {
+       /* db.get(selectSql, [channel, user, text], (err, row)  => {
             if (err) {
                 console.error(err.message);
             } else if (!row) {
