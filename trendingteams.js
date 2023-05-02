@@ -5,14 +5,16 @@ import pg from 'pg';
 import express from 'express';
 import * as dotenv from 'dotenv';
 
+
+
+
+
+
+
 const app = express();
 dotenv.config();
 
-app.listen(process.env.PGPORT, process.env.PGHOST, () =>
-{
-    console.log('Server running on port ${process.env.PGHOST}:${process.env.PGPORT}')
 
-});
 
 const pool = new pg.Pool({
 
