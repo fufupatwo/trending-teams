@@ -2,7 +2,7 @@ import { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
 import { promises as fs } from 'fs';
 import pg from 'pg';
-import express from 'express';
+//import express from 'express';
 import * as dotenv from 'dotenv';
 
 
@@ -11,7 +11,7 @@ import * as dotenv from 'dotenv';
 
 
 
-const app = express();
+//const app = express();
 dotenv.config();
 
 
