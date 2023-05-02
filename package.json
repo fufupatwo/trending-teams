@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "twitchproj",
+  "name": "twitchProj",
   "version": "1.0.0",
   "dependencies": {
     "@twurple/api": "^6.0.5",
