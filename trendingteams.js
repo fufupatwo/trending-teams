@@ -5,15 +5,16 @@ import pg from 'pg';
 import express from 'express';
 import * as dotenv from 'dotenv';
 
-
-
-
-
-
-
 const app = express();
 dotenv.config();
 
+const port = 3000;
+app.listen({port}, () => {
+    console.log('Server is running on port 3000');
+});
+app.get('/', (req, res) => {
+    res.send('Hello, world!');
+});
 
 
 const pool = new pg.Pool({
@@ -25,6 +26,22 @@ const pool = new pg.Pool({
     port: process.env.PGPORT,
 });
 pool.connect();
+
+app.get('/getRequest/:channel/user/:username/message_count', (req, res) => {
+    const {channel, username} = req.params;
+
+    const testsql = "SELECT * FROM twitchchat WHERE channel LIKE '%hello%' OR message LIKE '%hello%'";
+
+    pool.query(testsql,(err, result) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Error retrieving message count');
+        } else {
+            const usernames = result.rows.map(row => row.username);
+            res.send({usernames});
+        }
+    });
+});
 
 const sqlCreateTable = "CREATE TABLE IF NOT EXISTS twitchchat (id SERIAL PRIMARY KEY, channel TEXT NOT NULL, username TEXT NOT NULL, message TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
 pool.query(sqlCreateTable, (err, res) => {
@@ -60,7 +77,7 @@ async function main() {
     await authProvider.addUserForToken(tokenData, ['chat']);
 
 
-    const chatClient = new ChatClient({authProvider, channels: ['fufupatwo', 'xqc']});
+    const chatClient = new ChatClient({authProvider, channels: ['fufupatwo', 'ze1ig']});
     await chatClient.connect();
 
     //onAuthSuccess will print connected in chat.
