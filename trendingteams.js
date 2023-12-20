@@ -78,7 +78,16 @@ async function main() {
         chatClient.say('xqc', 'Hi');
     })
 
-    const emoteKeywords = ["monkaW", "NAHH"];
+    const emoteKeywords = await new Promise((resolve, reject) => {
+        connection.query('SELECT emotes_name FROM `emotes`', (err, emotesResults, emotesFields) => {
+            if (err) {
+                reject(err);
+            } else {
+                const emoteNames = emotesResults.map(emote => emote.emotes_name);
+                resolve(emoteNames);
+            }
+        });
+    });
 
     chatClient.onMessage(async (channel, user, text, msg) => {
         // Insert into chat_info table
@@ -92,7 +101,12 @@ async function main() {
                     console.log('Inserted into chat_info table');
                     const chat_info_id = results.insertId;
 
+                    //use sql query
+                    //emotes = select name from emotes...
 
+
+                    //for each word in sentence .. select name from emotes
+                    //count name from emotes where name = word
                     for (const emoteName of emoteKeywords) {
                         if (text.includes(emoteName)) {
                             const existingEmote = await new Promise((resolve, reject) => {

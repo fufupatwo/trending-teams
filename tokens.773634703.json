@@ -1,10 +1,10 @@
 {
-    "accessToken": "7q748wbptj7hijjn2mq5qsh9wdg8xh",
+    "accessToken": "jwp25eez7l13t5qtj3ai0857ffipyi",
     "refreshToken": "ovrxt976xm2fbc28oe84e23cjnse9v5fq88b0su7mrddqst0dp",
     "scope": [
         "chat:edit",
         "chat:read"
     ],
-    "expiresIn": 15049,
-    "obtainmentTimestamp": 1683064045094
+    "expiresIn": 15765,
+    "obtainmentTimestamp": 1703101473939
 }
