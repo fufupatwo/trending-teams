@@ -5,17 +5,33 @@ import pg from 'pg';
 import express from 'express';
 import * as dotenv from 'dotenv';
 import mysql from 'mysql2';
+import cors from 'cors';
 
-// const app = express();
+
+const app = express();
 dotenv.config();
+const port = 3000;
+app.use(cors());
+app.listen({port}, () => {
+    console.log('Server is running on port 3000');
+});
+app.get('/', (req, res) => {
+    res.send('Hello, world!');
+});
+app.get('/api/data', (req,res) => {
+    connection.query(
+        'SELECT COUNT(*) AS nahhCount FROM chat_info WHERE chat_info_message LIKE "%NAHH%"',
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send('Error retrieving data from the database');
+            } else {
+                res.json(results[0]); // Return the count
+            }
+        }
+    );
+});
 
-// const port = 3000;
-// app.listen({port}, () => {
-//     console.log('Server is running on port 3000');
-// });
-// app.get('/', (req, res) => {
-//     res.send('Hello, world!');
-// });
 
 const connection = mysql.createConnection({
     host: process.env.HOST,

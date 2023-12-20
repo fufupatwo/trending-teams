@@ -8,6 +8,7 @@
     "@twurple/easy-bot": "^6.0.5",
     "@twurple/eventsub-ws": "^6.0.5",
     "chart.js": "^4.3.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "latest-version": "^7.0.0",
