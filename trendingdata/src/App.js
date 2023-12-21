@@ -1,12 +1,15 @@
 import React from 'react';
 import BlackPage from './components/BlackPage';
 import T1Logo from './components/T1Logo';
+import StarsAnimation from './components/StarsAnimation';
 
 function App() {
   return (
       <div className="App">
         <BlackPage>
-            <T1Logo></T1Logo>
+
+            <T1Logo/>
+            <StarsAnimation/>
         </BlackPage>
       </div>
   );
