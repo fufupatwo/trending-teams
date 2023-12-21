@@ -11,6 +11,11 @@ const T1Logo= () => {
             style={{
         width: '200px',
         height: 'auto',
+                opacity: 0,
+                transition: 'opacity 6s ease-in-out',
+        }}
+            onLoad={(e) => {
+            e.target.style.opacity = 1;
         }}
         />
     );
